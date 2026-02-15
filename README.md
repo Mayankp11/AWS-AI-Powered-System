@@ -95,7 +95,7 @@ We welcome contributions to this project! Please follow these steps:
 
 # Contact Information
 For questions or inquiries, please reach out to:
-- Mayankp11@example.com
+- mayankpatil892@gmail.com
 
 ---
 
