@@ -1,15 +1,17 @@
+# dashboard.py
 import streamlit as st
 import pandas as pd
 import plotly.express as px
 from sqlalchemy import create_engine, text
-import os
 
-# DB_USER = st.secrets["DB_USER"]
-# DB_PASSWORD = st.secrets["DB_PASSWORD"]
-# DB_HOST = st.secrets["DB_HOST"]
-# DB_PORT = st.secrets["DB_PORT"]   # Keep as string, SQLAlchemy handles it
-# DB_NAME = st.secrets["DB_NAME"]
+# --- Read DB credentials from Streamlit Secrets ---
+DB_USER = st.secrets["DB_USER"]
+DB_PASSWORD = st.secrets["DB_PASSWORD"]
+DB_HOST = st.secrets["DB_HOST"]
+DB_PORT = st.secrets["DB_PORT"]   # string is fine
+DB_NAME = st.secrets["DB_NAME"]
 
+# --- Create SQLAlchemy engine ---
 engine = create_engine(
     f"postgresql+psycopg2://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}",
     pool_size=5,
@@ -18,10 +20,10 @@ engine = create_engine(
     pool_recycle=1800
 )
 
-
+# --- Streamlit title ---
 st.title("AWS Billing Dashboard 💰")
 
-# Total rows and total cost
+# --- Total rows and total cost ---
 with engine.connect() as conn:
     total_rows = conn.execute(text('SELECT COUNT(*) FROM billing_data;')).scalar()
     total_cost = conn.execute(text('SELECT SUM("UnblendedCost") FROM billing_data;')).scalar()
@@ -29,7 +31,7 @@ with engine.connect() as conn:
 st.metric("Total Rows", total_rows)
 st.metric("Total Cost ($)", round(total_cost, 2))
 
-# Top 5 services
+# --- Top 5 services ---
 query_top_services = """
 SELECT "Service", SUM("UnblendedCost") AS total_cost
 FROM billing_data
