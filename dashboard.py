@@ -4,7 +4,7 @@ import plotly.express as px
 from sqlalchemy import create_engine, text
 import os
 
-DB_USER = st.secrets["postgres"]["DB_USER"]
+DB_USER = st.secrets["dracielisred"]["DB_USER"]
 DB_PASSWORD = st.secrets["dracielisred"]["DB_PASSWORD"]
 DB_HOST = st.secrets["dracielisred"]["DB_HOST"]
 DB_PORT = st.secrets["dracielisred"]["DB_PORT"]   # Keep as string, SQLAlchemy handles it
