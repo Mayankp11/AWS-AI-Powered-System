@@ -2,19 +2,22 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 from sqlalchemy import create_engine, text
-from dotenv import load_dotenv
 import os
 
-load_dotenv()
+DB_USER = st.secrets["postgres"]["DB_USER"]
+DB_PASSWORD = st.secrets["postgres"]["DB_PASSWORD"]
+DB_HOST = st.secrets["postgres"]["DB_HOST"]
+DB_PORT = st.secrets["postgres"]["DB_PORT"]   # Keep as string, SQLAlchemy handles it
+DB_NAME = st.secrets["postgres"]["DB_NAME"]
 
 engine = create_engine(
-    f"postgresql+psycopg2://{os.getenv('DB_USER')}:{os.getenv('DB_PASSWORD')}"
-    f"@{os.getenv('DB_HOST')}:{os.getenv('DB_PORT')}/{os.getenv('DB_NAME')}",
+    f"postgresql+psycopg2://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}",
     pool_size=5,
     max_overflow=10,
     pool_timeout=30,
     pool_recycle=1800
 )
+
 
 st.title("AWS Billing Dashboard 💰")
 
