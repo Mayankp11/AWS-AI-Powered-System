@@ -11,7 +11,7 @@ DB_HOST = st.secrets["DB_HOST"]
 DB_PORT = st.secrets["DB_PORT"]   # string is fine
 DB_NAME = st.secrets["DB_NAME"]
 
-# --- Create SQLAlchemy engine ---
+
 engine = create_engine(
     f"postgresql+psycopg2://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}",
     pool_size=5,
