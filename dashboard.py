@@ -4,11 +4,11 @@ import plotly.express as px
 from sqlalchemy import create_engine, text
 import os
 
-DB_USER = st.secrets["postgres"]["DB_USER"]
-DB_PASSWORD = st.secrets["postgres"]["DB_PASSWORD"]
-DB_HOST = st.secrets["postgres"]["DB_HOST"]
-DB_PORT = st.secrets["postgres"]["DB_PORT"]   # Keep as string, SQLAlchemy handles it
-DB_NAME = st.secrets["postgres"]["DB_NAME"]
+DB_USER = st.secrets["DB_USER"]
+DB_PASSWORD = st.secrets["DB_PASSWORD"]
+DB_HOST = st.secrets["DB_HOST"]
+DB_PORT = st.secrets["DB_PORT"]   # Keep as string, SQLAlchemy handles it
+DB_NAME = st.secrets["DB_NAME"]
 
 engine = create_engine(
     f"postgresql+psycopg2://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}",
