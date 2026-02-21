@@ -21,7 +21,7 @@ engine = create_engine(
 )
 
 # --- Streamlit title ---
-st.title("AWS Billing Dashboard 💰")
+st.title("AWS Billing Dashboard try💰")
 
 # --- Total rows and total cost ---
 with engine.connect() as conn:
