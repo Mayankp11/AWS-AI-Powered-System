@@ -51,3 +51,4 @@ with engine.connect() as connection:
 - Always limit data returned (LIMIT or aggregation) to avoid freezing notebooks.
 
 # Streamlit
+https://aws-ai-powered-system-qnonvad8pqkbkbe9kuqkmf.streamlit.app/
