@@ -35,7 +35,7 @@ st.title("📊 Dummy RDS Dashboard")
 # -----------------------------
 @st.cache_data
 def load_data():
-    query = f"SELECT * FROM {TABLE_NAME}"
+    query = f"SELECT * FROM {DB_NAME}"
     return pd.read_sql(query, engine)
 
 try:
